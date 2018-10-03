@@ -2,8 +2,55 @@
   <html>
    <head>
      <title>Getting Started</title>
+     <style>
+         * {
+             box-sizing: border-box;
+         }
+         .btn--solve {float: left; margin-right: 10px}
+         .btn--solve, .cell {
+             font-size: 18px;
+         }
+         body::after {
+             content: "";
+             display: table;
+             clear: both;
+         }
+         .field {
+             padding: 3px;
+             background: black;
+             float: left;
+             margin-right: 10px;
+         }
+         .field::after {
+             content: "";
+             clear: both;
+             display: table;
+         }
+         .cell {
+             border: 1px solid gray;
+             width: 30px;
+             height: 30px;
+             float: left;
+             text-align: center;
+             background: white;
+         }
+         .col0 {
+             clear: left;
+         }
+         .col3, .col6 {
+             margin-left: 3px;
+         }
+         .row3, .row6 {
+             margin-top: 3px;
+         }
+     </style>
    </head>
    <body>
+       <div>
+        <div class="field js-field"></div>
+        <button class="js-solve btn--solve">Solve</button>
+    </div>
+        <div class="js-solutions"></div>
     <script src="main.js"></script>
    </body>
   </html>
