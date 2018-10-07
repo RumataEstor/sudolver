@@ -73,32 +73,63 @@ function solve() {
         solutions.appendChild(field);
     }
 
-    function solveStep(i: number) {
-        console.log(i);
-        for (;; ++i) {
-            if (i >= LSIZE) {
-                dumpSolution();
-                return;
-            }
-            if (values[i] == 0) break;
-        }
+    function getCellChoices(i: number, maxChoices: number) {
+        if (values[i] != 0) return;
 
         const row = Math.floor(i / 9);
         const col = i - row * 9;
+        const result = [];
 
         for (let value = 1; value < 10; ++value)
         {
             if (!rowContains(row, value) && !colContains(col, value) &&
                 !boxContains(row, col, value))
             {
-                values[i] = value;
-                solveStep(i + 1);
-                values[i] = 0;
+                result.push(value);
+                if (result.length == maxChoices) return;
             }
         }
+        return result;
     }
 
-    solveStep(0);
+    function findBestCell() {
+        let best;
+        let bestChoicesLen = 10;
+
+        for (let i = 0; i < LSIZE; ++i) {
+            let choices = getCellChoices(i, bestChoicesLen);
+
+            if (!choices) {
+                continue;
+            }
+
+            else if (choices.length <= 1) {
+                return {i: i, choices: choices};
+            }
+
+            best = {i: i, choices: choices};
+            bestChoicesLen = choices.length;
+        }
+
+        return best;
+    }
+
+    function solveStep() {
+        const choice = findBestCell();
+        if (!choice) {
+            dumpSolution();
+            return;
+        }
+
+        for (let value of choice.choices)
+        {
+            values[choice.i] = value;
+            solveStep();
+        }
+        values[choice.i] = 0;
+    }
+
+    solveStep();
 }
 
 (function () {
