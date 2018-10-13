@@ -23,6 +23,6 @@ module.exports = {
         extensions: [".ts", ".js"],
     },
     devServer: {
-             contentBase: './dist'
-           },
+        contentBase: './dist'
+    },
 };
