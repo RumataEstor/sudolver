@@ -12,7 +12,7 @@
         "prebuild": "npm install",
         "build": "node_modules/.bin/webpack",
         "start": "webpack-dev-server --open",
-        "predeploy": "npm run build",
+        "predeploy": "npm run prebuild && node_modules/.bin/webpack --mode=production",
         "deploy": "node_modules/.bin/gh-pages -d dist"
     }
 }

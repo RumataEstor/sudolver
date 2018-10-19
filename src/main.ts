@@ -134,7 +134,7 @@ function solve() {
 
 (function () {
     const field = document.getElementsByClassName("js-field")[0];
-
+    let prev: HTMLInputElement | null = null;
     for (let row = 0; row < 9; ++row) {
         for (let col = 0; col < 9; ++col) {
             const el = document.createElement("input");
@@ -142,6 +142,12 @@ function solve() {
             el.classList.add("cell", "col" + col, "row" + row);
             field.appendChild(el);
             inputs[row * 9 + col] = el;
+            if (prev) {
+                prev.addEventListener("input", function() {
+                    if (this.value.length > 0) el.focus();
+                });
+            }
+            prev = el;
         }
     }
 
