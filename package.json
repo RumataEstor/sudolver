@@ -2,16 +2,16 @@
     "private": true,
     "devDependencies": {
         "gh-pages": "^2.0.1",
-        "ts-loader": "^5.2.0",
-        "typescript": "^3.0.3",
-        "webpack": "^4.20.0",
-        "webpack-cli": "^3.1.1",
-        "webpack-dev-server": "^3.1.9"
+        "ts-loader": "^5.3.3",
+        "typescript": "^3.3.0",
+        "webpack": "^4.29.6",
+        "webpack-cli": "^3.2.3",
+        "webpack-dev-server": "^3.2.1"
     },
     "scripts": {
         "prebuild": "npm install",
         "build": "node_modules/.bin/webpack",
-        "start": "webpack-dev-server --open",
+        "start": "webpack-dev-server --open --mode=development",
         "predeploy": "npm run prebuild && node_modules/.bin/webpack --mode=production",
         "deploy": "node_modules/.bin/gh-pages -d dist"
     }

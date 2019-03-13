@@ -4,7 +4,7 @@ const LSIZE = 9 * 9;
 function solve() {
     const solutions = document.getElementsByClassName('js-solutions')[0];
     solutions.innerHTML = '';
-    let solutionCount = 0;
+    let solutionCount = 10;
 
     const values = new Int8Array(LSIZE);
     for (let i = 0; i < LSIZE; ++i) {
@@ -72,8 +72,8 @@ function solve() {
             }
         }
         solutions.appendChild(field);
-        solutionCount += 1;
-        return solutionCount >= 100;
+        solutionCount -= 1;
+        return solutionCount <= 0;
     }
 
     function getCellChoices(i: number, maxChoices: number) {
